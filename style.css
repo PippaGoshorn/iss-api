@@ -1,0 +1,137 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.page-header {
+    background-image: url('./img/space-background.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    text-align: center;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+#map {
+    height: 55vh;
+    width: 100%;
+}
+
+.img-info-block {
+    display: flex;
+    height: 35vh;
+    width: 100%;
+}
+
+.img-info-block img {
+    width: 35%;
+}
+
+.key-stats {
+    padding-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('./img/space-background.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.key-stats h1 {
+    margin: 0;
+}
+
+.key-stats ul {
+    padding-left: 0;
+    line-height: 1.5rem;
+}
+
+.key-stats ul li {
+    list-style: none;
+}
+
+.key-stats li::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    background-image: url('./img/space-station-icon3.jpg');
+    background-size: cover;
+    margin-right: 13px;
+    margin-left: 0;
+}
+
+.emphasis {
+    font-weight: bold;
+}
+
+/* Media query - tablet */
+@media screen and (max-width: 850px) {
+    #map {
+        height: 55vh;
+    }
+    .img-info-block {
+        height: 35vh;
+        width: 100vw;
+    }
+    .img-info-block img {
+        width: 50%;
+    }
+    .img1 {
+        display: none;
+    }
+    .key-stats {
+        width: 50%;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+}
+
+/* Media query - mobile */
+@media screen and (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.3rem;
+        padding: 1.5rem;
+    }
+    #map {
+        height: 30vh;
+    }
+    .img-info-block {
+        height: 40vh;
+        width: 100vw;
+        flex-direction: column;
+    }
+    .img-info-block img {
+        width: 100vw;
+    }
+    .img1 {
+        display: none;
+    }
+    .key-stats h1 {
+        font-size: 1.3rem;
+    }
+    .key-stats {
+        width: 100vw;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+}

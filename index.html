@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Space Station API</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiP2MASPbXDPzh_YTm7CuAWZSh1tfz_kw"></script>
+    <script src="https://kit.fontawesome.com/d43de0d35d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class = "page-wrapper">
+
+        <header class = "page-header">
+            <h1>INTERNATIONAL SPACE STATION <i class="fa-solid fa-satellite"></i> Live Tracker</h1>
+        </header>
+
+        <div id="map"></div>
+
+        <div class = "img-info-block">
+            <img class = "img1" src="./img/iss-night.jpg" alt="Image of the International Space Station orbiting the earth from space">
+            <div class="key-stats">
+                <h1>Key stats</h1>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <img class="img2" src="./img/iss-space-moon.webp" alt="Image of the International Space Station orbiting the earth from space">
+        </div>     
+    
+    </div>
+
+    <script>
+        const apiUrl = 'https://api.wheretheiss.at/v1/satellites/25544?units=miles';
+
+        // GET request
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+        // Handling API response data
+            const latitude = data.latitude;
+            const longitude = data.longitude;
+        // Call function to display the coordinates on Google Maps
+            displayOnGoogleMaps(latitude, longitude);
+        // Display key stats
+            const velocity = data.velocity;
+            document.getElementsByTagName('li')[0].innerHTML = "<span class='emphasis'>Velocity:</span> " + Math.round(velocity).toLocaleString() + " mph";
+            const altitude = data.altitude;
+            document.getElementsByTagName('li')[1].innerHTML = "<span class='emphasis'>Altitude:</span> " + Math.round(altitude) + " miles";
+            document.getElementsByTagName('li')[2].innerHTML = "<span class='emphasis'>Latitude:</span> " + latitude.toFixed(6);
+            document.getElementsByTagName('li')[3].innerHTML = "<span class='emphasis'>Longitude:</span> " + longitude.toFixed(6);
+            const visibility = data.visibility;
+            document.getElementsByTagName('li')[4].innerHTML = "<span class='emphasis'>Visibility:</span> " + visibility;
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
+
+        function displayOnGoogleMaps(latitude, longitude) {
+        const mapOptions = {
+          center: { lat: latitude, lng: longitude },
+          zoom: 2.5,
+        };
+  
+        const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
+        // Add a marker to the map
+        const issMarker = new google.maps.Marker({
+          position: { lat: latitude, lng: longitude },
+          map: map,
+          title: 'International Space Station (ISS)',
+        });
+      }
+    </script>
+    
+</body>
+</html>
